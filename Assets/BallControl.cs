@@ -7,7 +7,12 @@ public class BallControl : MonoBehaviour
     public int rotationSpeed = 100;
     public int jumpHeight = 8;
 
-    private bool isFalling = false; 
+    private bool isFalling = false;
+
+    private void Start()
+    {
+        Application.targetFrameRate = 144;
+    }
 
     // Update is called once per frame
     void Update()
