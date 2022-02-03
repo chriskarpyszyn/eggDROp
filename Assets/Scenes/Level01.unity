@@ -665,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1369743977}
-  rotationSpeed: 100
+  rotationSpeed: 200
   jumpHeight: 8
 --- !u!114 &1369743979
 MonoBehaviour:

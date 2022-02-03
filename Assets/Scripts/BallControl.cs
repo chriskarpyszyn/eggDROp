@@ -4,7 +4,7 @@ public class BallControl : MonoBehaviour
 {
 
     public Rigidbody rigidBody;
-    public int rotationSpeed = 100;
+    public int rotationSpeed = 200;
     public int jumpHeight = 8;
 
     private bool isFalling = false;
