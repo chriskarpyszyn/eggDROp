@@ -15,7 +15,13 @@ public class BallHealth : MonoBehaviour
         {
             //todo-ck add checkpoints
             SceneManager.LoadScene("Level01");
+            resetOnDeath();
             
         }
+    }
+
+    private void resetOnDeath()
+    {
+        GameManager.currentScore = 0;
     }
 }

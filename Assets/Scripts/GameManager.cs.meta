@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 08cbc36311e75644d8ada770478e6840
+guid: c7e2996de3079f84db13478963ebcb77
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - coinEffect: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
