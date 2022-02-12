@@ -37,6 +37,18 @@ public class BallControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        playBallCollisionAudio();
+        isFalling = false;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Debug.Log("Play Jump Sound");
+        isFalling = true;
+    }
+
+    private void playBallCollisionAudio()
+    {
         audioSource = GetComponent<AudioSource>();
         int randomRange = Random.Range(0, 3);
         switch (randomRange)
@@ -57,16 +69,10 @@ public class BallControl : MonoBehaviour
         if (hasHitOnce)
         {
             audioSource.Play(0);
-        } else
+        }
+        else
         {
             hasHitOnce = true;
         }
-        isFalling = false;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        Debug.Log("Play Jump Sound");
-        isFalling = true;
     }
 }
