@@ -8,8 +8,9 @@ public class BallHealth : MonoBehaviour
     public int maxFallDistance = -10;
     private bool isRestarting = false;
 
+    public AudioClip gameOverSound;
+
     private AudioSource audioSource;
-    private AudioClip audioClip;
    
     // Update is called once per frame
     void Update()
@@ -26,9 +27,9 @@ public class BallHealth : MonoBehaviour
     {
         isRestarting = true;
         audioSource = GetComponent<AudioSource>();
-        audioClip = audioSource.clip;
+        audioSource.clip = gameOverSound;
         audioSource.Play();
-        yield return new WaitForSeconds(audioClip.length+(float)0.5);
+        yield return new WaitForSeconds(audioSource.clip.length+(float)0.5);
         SceneManager.LoadScene("Level01");
     }
 }

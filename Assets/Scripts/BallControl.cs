@@ -6,8 +6,12 @@ public class BallControl : MonoBehaviour
     public Rigidbody rigidBody;
     public int rotationSpeed = 200;
     public int jumpHeight = 8;
+    public AudioClip hit01, hit02, hit03;
+
 
     private bool isFalling = false;
+    private bool hasHitOnce = false;
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -31,13 +35,38 @@ public class BallControl : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
+        audioSource = GetComponent<AudioSource>();
+        int randomRange = Random.Range(0, 3);
+        switch (randomRange)
+        {
+            case 0:
+                audioSource.clip = hit01;
+                break;
+            case 1:
+                audioSource.clip = hit02;
+                break;
+            case 2:
+                audioSource.clip = hit03;
+                break;
+        }
+        audioSource.pitch = Random.Range((float)0.9, (float)1.1);
+
+        //a bit of a hack to stop this sound from playing on start.
+        if (hasHitOnce)
+        {
+            audioSource.Play(0);
+        } else
+        {
+            hasHitOnce = true;
+        }
         isFalling = false;
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        Debug.Log("Play Jump Sound");
         isFalling = true;
     }
 }
