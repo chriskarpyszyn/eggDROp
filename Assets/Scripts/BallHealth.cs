@@ -28,6 +28,7 @@ public class BallHealth : MonoBehaviour
         isRestarting = true;
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = gameOverSound;
+        audioSource.pitch = (float)0.85;
         audioSource.Play();
         yield return new WaitForSeconds(audioSource.clip.length+(float)0.5);
         SceneManager.LoadScene("Level01");
