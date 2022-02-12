@@ -9,13 +9,21 @@ public class BallControl : MonoBehaviour
     public AudioClip hit01, hit02, hit03;
 
 
-    private bool isFalling = false;
+    private float distToGround;
     private bool hasHitOnce = false;
     private AudioSource audioSource;
 
     private void Start()
     {
         Application.targetFrameRate = 144;
+
+        //get the distance from the center to the ground
+        distToGround = GetComponent<Collider>().bounds.extents.y;
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround + (float)0.1);
     }
 
     // Update is called once per frame
@@ -28,7 +36,7 @@ public class BallControl : MonoBehaviour
         rigidBody.AddRelativeTorque(Vector3.back * rotation);
 
         //handle jump
-        if (Input.GetKeyDown(KeyCode.Space) && !isFalling)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rigidBody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
             
@@ -38,13 +46,11 @@ public class BallControl : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         playBallCollisionAudio();
-        isFalling = false;
     }
 
     private void OnCollisionExit(Collision collision)
     {
         Debug.Log("Play Jump Sound");
-        isFalling = true;
     }
 
     private void playBallCollisionAudio()
