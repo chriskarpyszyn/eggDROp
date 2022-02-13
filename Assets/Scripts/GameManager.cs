@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 
     static public int currentScore;
+    public Transform musicPrefab;
     public float offsetY = 40;
     public float sizeX = 80;
     public float sizeY = 25;
@@ -13,6 +14,13 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         currentScore = 0;
+
+        if (!GameObject.FindGameObjectWithTag("MusicManager"))
+        {
+            Transform musicManager = Instantiate(musicPrefab, transform.position, Quaternion.identity);
+            musicManager.name = musicPrefab.name;
+            DontDestroyOnLoad(musicManager);
+        }
     }
 
     private void OnGUI()
