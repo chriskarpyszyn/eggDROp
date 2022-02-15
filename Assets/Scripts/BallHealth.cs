@@ -26,11 +26,19 @@ public class BallHealth : MonoBehaviour
     private IEnumerator RestartLevel()
     {
         isRestarting = true;
+        yield return playGameOverSound();
+        //SceneManager.LoadScene("Level01");
+        transform.position = CheckPoint.ReachedPoint;
+        isRestarting = false;
+        GameManager.currentScore = 0;
+    }
+
+    private IEnumerator playGameOverSound()
+    {
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = gameOverSound;
         audioSource.pitch = (float)0.85;
         audioSource.Play();
-        yield return new WaitForSeconds(audioSource.clip.length+(float)0.5);
-        SceneManager.LoadScene("Level01");
+        yield return new WaitForSeconds(audioSource.clip.length + (float)0.5);
     }
 }
